@@ -2,6 +2,7 @@ package com.univer.servlet;
 
 import com.univer.connection.ConnectionCreator;
 import com.univer.dao.HumanDao;
+import com.univer.entity.Human;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebServlet("/")
 public class HumanServlet extends HttpServlet {
@@ -25,19 +27,19 @@ public class HumanServlet extends HttpServlet {
         switch (action) {
             case "/new":
                 listHumans(request, response);
-/*                break;
-            case "/insert":
+                break;
+            /*case "/insert":
                 insertBook(request, response);
-                break;
+                break;*/
             case "/delete":
-                deleteBook(request, response);
+                deleteHuman(request, response);
                 break;
-            case "/edit":
+            /*case "/edit":
                 showEditForm(request, response);
                 break;
             case "/update":
-                updateBook(request, response);*/
-                break;
+                updateBook(request, response);
+                break;*/
             /*default:
                 listHumans(request, response);
                 break;*/
@@ -56,5 +58,17 @@ public class HumanServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
+    }
+
+    private void deleteHuman(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        HumanDao humanDao = new HumanDao(new ConnectionCreator().createConnection());
+
+        Human human = new Human();
+        human.setId(id);
+
+        humanDao.deleteOne(human);
+        response.sendRedirect("list");
     }
 }

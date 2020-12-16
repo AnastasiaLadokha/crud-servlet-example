@@ -56,12 +56,19 @@ public class HumanDao {
         return rowInserted;
     }
 
-    public boolean deleteOne(Human human) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ONE_HUMAN);
-        preparedStatement.setInt(1, human.getId());
+    public boolean deleteOne(Human human)  {
+        PreparedStatement preparedStatement = null;
+        boolean rowDeleted = true;
+        try {
+            preparedStatement = connection.prepareStatement(DELETE_ONE_HUMAN);
+            preparedStatement.setInt(1, human.getId());
 
-        boolean rowDeleted = preparedStatement.executeUpdate() > 0;
-        preparedStatement.close();
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+            preparedStatement.close();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+
         return rowDeleted;
     }
 
