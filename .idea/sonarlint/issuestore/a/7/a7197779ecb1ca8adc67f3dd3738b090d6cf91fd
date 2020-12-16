@@ -1,0 +1,16 @@
+
+X	java:S125"<This block of commented-out lines of code should be removed.(ÿ°‚ö8¹º¦‡ß.
+†
+java:S1989"dHandle the following exceptions that could be thrown by "listHumans": ServletException, IOException.(ë›¾èùÿÿÿÿ8Äı¦‡ß.
+E
+java:S11859"(Remove this method to simply inherit it.(üª¼í8×Õ…ß.
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8 ©š‡ß.
+z
+java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(–¿±¤ÿÿÿÿÿ8è¸÷†ß.
+‚
+java:S1989:"`Handle the following exceptions that could be thrown by "doPost": ServletException, IOException.(Í†»Öúÿÿÿÿ8×Õ…ß.
+m
+java:S1301"KReplace this "switch" statement by "if" statements to increase readability.(ë´åİşÿÿÿÿ8¹º¦‡ß.
+]	java:S125-"<This block of commented-out lines of code should be removed.(ë›¾èùÿÿÿÿ8²ı¥‡ß.
+C	java:S131""Add a default case to this switch.(ë´åİşÿÿÿÿ8«µ¥‡ß.
