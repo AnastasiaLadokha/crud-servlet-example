@@ -25,9 +25,9 @@ public class HumanServlet extends HttpServlet {
         String action = request.getServletPath();
 
         switch (action) {
-            case "/new":
-                listHumans(request, response);
-                break;
+            /*case "/new":
+                listHumans(request, response);*/
+               /* break;*/
             /*case "/insert":
                 insertBook(request, response);
                 break;*/
@@ -40,9 +40,12 @@ public class HumanServlet extends HttpServlet {
             case "/update":
                 updateBook(request, response);
                 break;*/
-            /*default:
+            case "/list":
                 listHumans(request, response);
-                break;*/
+                break;
+            default:
+                listHumans(request, response);
+                break;
         }
     }
 
