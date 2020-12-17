@@ -16,31 +16,31 @@
     </h2>
 </center>
 <div align="center">
-    <c:if test="${book != null}">
+    <c:if test="${human != null}">
     <form action="update" method="post">
         </c:if>
-        <c:if test="${book == null}">
+        <c:if test="${human == null}">
         <form action="insert" method="post">
             </c:if>
             <table border="1" cellpadding="5">
                 <caption>
                     <h2>
-                        <c:if test="${book != null}">
+                        <c:if test="${human != null}">
                             Edit HUman
                         </c:if>
-                        <c:if test="${book == null}">
+                        <c:if test="${human == null}">
                             Add New Human
                         </c:if>
                     </h2>
                 </caption>
-                <c:if test="${book != null}">
-                    <input type="hidden" name="id" value="<c:out value='${book.id}' />"/>
+                <c:if test="${human != null}">
+                    <input type="hidden" name="id" value="<c:out value='${human.id}' />"/>
                 </c:if>
                 <tr>
                     <th>Id:</th>
                     <td>
                         <input type="text" name="id" size="45"
-                               value="<c:out value='${book.id}' />"
+                               value="<c:out value='${human.id}' />"
                         />
                     </td>
                 </tr>
@@ -48,7 +48,7 @@
                     <th>Name:</th>
                     <td>
                         <input type="text" name="name" size="45"
-                               value="<c:out value='${book.name}' />"
+                               value="<c:out value='${human.name}' />"
                         />
                     </td>
                 </tr>
@@ -56,7 +56,7 @@
                     <th>Surname:</th>
                     <td>
                         <input type="text" name="surname" size="5"
-                               value="<c:out value='${book.surname}' />"
+                               value="<c:out value='${human.surname}' />"
                         />
                     </td>
                 </tr>

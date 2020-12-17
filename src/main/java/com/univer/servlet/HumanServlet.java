@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet("/")
@@ -34,12 +33,12 @@ public class HumanServlet extends HttpServlet {
             case "/delete":
                 deleteHuman(request, response);
                 break;
-            /*case "/edit":
+            case "/edit":
                 showEditForm(request, response);
                 break;
             case "/update":
-                updateBook(request, response);
-                break;*/
+                updateHuman(request, response);
+                break;
             case "/list":
                 listHumans(request, response);
                 break;
@@ -47,6 +46,37 @@ public class HumanServlet extends HttpServlet {
                 listHumans(request, response);
                 break;
         }
+    }
+
+    private void updateHuman(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HumanDao humanDao = new HumanDao(new ConnectionCreator().createConnection());
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
+
+        Human human = new Human(id, name, surname);
+        try {
+            humanDao.changeOne(human);
+        } catch (Exception e) {
+
+        }
+        response.sendRedirect("list");
+    }
+
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HumanDao humanDao = new HumanDao(new ConnectionCreator().createConnection());
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        Human human = new Human();
+        try {
+             human = humanDao.getOne(id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user-add.jsp");
+        request.setAttribute("human", human);
+        dispatcher.forward(request, response);
     }
 
     private void insertBook(HttpServletRequest request, HttpServletResponse response) throws IOException {
