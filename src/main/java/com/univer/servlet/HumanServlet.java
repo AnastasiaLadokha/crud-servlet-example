@@ -25,12 +25,12 @@ public class HumanServlet extends HttpServlet {
         String action = request.getServletPath();
 
         switch (action) {
-            /*case "/new":
-                listHumans(request, response);*/
-               /* break;*/
-            /*case "/insert":
+            case "/new":
+                showNewForm(request, response);
+                break;
+            case "/insert":
                 insertBook(request, response);
-                break;*/
+                break;
             case "/delete":
                 deleteHuman(request, response);
                 break;
@@ -49,6 +49,27 @@ public class HumanServlet extends HttpServlet {
         }
     }
 
+    private void insertBook(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HumanDao humanDao = new HumanDao(new ConnectionCreator().createConnection());
+
+
+        Human human = new Human(Integer.parseInt(request.getParameter("id")), request.getParameter("name"), request.getParameter("surname"));
+        try {
+            humanDao.addOne(human);
+        } catch (Exception e) {
+
+        }
+        response.sendRedirect("list");
+    }
+
+    private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HumanDao humanDao = new HumanDao(new ConnectionCreator().createConnection());
+
+        request.setAttribute("humans", humanDao.getAll());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user-add.jsp");
+        dispatcher.forward(request, response);
+    }
+
     private void listHumans(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HumanDao humanDao = new HumanDao(new ConnectionCreator().createConnection());
@@ -60,7 +81,7 @@ public class HumanServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        doGet(req, resp);
     }
 
     private void deleteHuman(HttpServletRequest request, HttpServletResponse response)
@@ -72,6 +93,6 @@ public class HumanServlet extends HttpServlet {
         human.setId(id);
 
         humanDao.deleteOne(human);
-        response.sendRedirect("list");
+        response.sendRedirect("/list");
     }
 }
