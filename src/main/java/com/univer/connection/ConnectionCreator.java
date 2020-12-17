@@ -26,9 +26,9 @@ public class ConnectionCreator {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        String url = "jdbc:postgresql://localhost:5432/human";      //properties.getProperty("db.url");
+        String url = "jdbc:postgresql://localhost:5432/hospital";      //properties.getProperty("db.url");
         String username = "postgres";  //properties.getProperty("db.username");
-        String password = "qwe12345";  //properties.getProperty("db.password");
+        String password = "2509";  //properties.getProperty("db.password");
         try {
             return DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {

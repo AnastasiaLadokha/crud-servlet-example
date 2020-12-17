@@ -3,60 +3,61 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Books Store Application</title>
+    <title>Hospital Application</title>
 </head>
 <body>
 <center>
-    <h1>Books Management</h1>
+    <jsp:include page="index.jsp"></jsp:include>
+    <h1>Departments Management</h1>
     <h2>
-        <a href="/new">Add New Human</a>
+        <a href="/newDepartment">Add New Department</a>
         &nbsp;&nbsp;&nbsp;
-        <a href="/list">List All Humans</a>
+        <a href="/listDepartment">List All Departments</a>
 
     </h2>
 </center>
 <div align="center">
-    <c:if test="${human != null}">
+    <c:if test="${department != null}">
     <form action="update" method="post">
         </c:if>
-        <c:if test="${human == null}">
+        <c:if test="${department == null}">
         <form action="insert" method="post">
             </c:if>
             <table border="1" cellpadding="5">
                 <caption>
                     <h2>
-                        <c:if test="${human != null}">
-                            Edit HUman
+                        <c:if test="${department != null}">
+                            Edit Department
                         </c:if>
-                        <c:if test="${human == null}">
-                            Add New Human
+                        <c:if test="${department == null}">
+                            Add New Department
                         </c:if>
                     </h2>
                 </caption>
-                <c:if test="${human != null}">
-                    <input type="hidden" name="id" value="<c:out value='${human.id}' />"/>
+                <c:if test="${department != null}">
+                    <input type="hidden" name="id" value="<c:out value='${department.id}' />"/>
                 </c:if>
                 <tr>
                     <th>Id:</th>
                     <td>
                         <input type="text" name="id" size="45"
-                               value="<c:out value='${human.id}' />"
+                               value="<c:out value='${department.id}' />"
                         />
                     </td>
                 </tr>
                 <tr>
-                    <th>Name:</th>
+                    <th>Title:</th>
                     <td>
-                        <input type="text" name="name" size="45"
-                               value="<c:out value='${human.name}' />"
+                        <input type="text" name="title" size="45"
+                               value="<c:out value='${department.title}' />"
                         />
                     </td>
                 </tr>
                 <tr>
-                    <th>Surname:</th>
+                    <th>Count of rooms:</th>
                     <td>
-                        <input type="text" name="surname" size="5"
-                               value="<c:out value='${human.surname}' />"
+                        <input type="text" name="count_of_rooms" size="5"
+                               value="<c:out value='${department.count_of_rooms}' />"
                         />
                     </td>
                 </tr>
